@@ -5,12 +5,12 @@
   "type": "module",
   "description": "CS 553 Midterm",
   "scripts": {
-    "api": "node src/server.js",
-    "client": "http-server client -p 5173 -c-1",
+    "server": "node src/server.js",
+    "client": "http-server client -p 5173 -c-1"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.2",
+    "express": "^4.21.2"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
