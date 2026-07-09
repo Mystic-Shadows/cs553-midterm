@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS-553 Midterm</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <main class="page">
+        <section class="panel">
+            <h1>CS-553 Midterm</h1>
+            <p>
+                Basic Form for interacting with the Midterm
+            </p>
+
+            <h2>Get Health</h2>
+            <p>Returns if the server is up</p>
+            <button id="get-health" type="button">Get Health</button>
+            <p id="health" class="health">Unknown</p>
+
+            <h2>Get Tasks</h2>
+            <p>Returns all tasks stored in the server</p>
+            <button id="get-tasks" type="button">Get Tasks</button>
+            <ul id="tasks" class="tasks"></ul>
+
+            <h2>Get Task</h2>
+            <p>Returns the task associated with the supplied ID</p>
+            <form id="get-task-form">
+                <label style="display: block; text-align: left;">Task ID</label>
+                <input id="get-task-id" name="get-task-id" type="number" required>
+                <button type="submit">Get Task</button>
+            </form>
+            <p id="task" class="task"></p>
+
+            <h2>Make Task (POST)</h2>
+            <p>Makes a new task</p>
+            <form id="post-task-form">
+                <label style="display: block; text-align: left;">Title</label>
+                <input id="post-task-title" name="post-task-title" type="text" required>
+                <label style="display: block; text-align: left;">Course</label>
+                <input id="post-task-course" name="post-task-course" type="text" required>
+                <label style="display: block; text-align: left;">Completed</label>
+                <select id="post-task-completed" name="post-task-completed" required>
+                    <option value="" disabled selected>--- Select Completed Status ---</option>
+                    <option value="true">Completed</option>
+                    <option value="false">Not Completed</option>
+                </select>
+                <button type="submit">Make Task</button>
+            </form>
+            <p id="post-status" class="status"></p>
+
+            <h2>Overwrite Task (PUT)</h2>
+            <p>Overwrites an existing task with the supplied ID</p>
+            <form id="put-task-form">
+                <label style="display: block; text-align: left;">ID</label>
+                <input id="put-task-title" name="put-task-title" type="number" required>
+                <label style="display: block; text-align: left;">Title</label>
+                <input id="put-task-title" name="put-task-title" type="text" required>
+                <label style="display: block; text-align: left;">Course</label>
+                <input id="put-task-course" name="put-task-course" type="text" required>
+                <label style="display: block; text-align: left;">Completed</label>
+                <select id="put-task-completed" name="put-task-completed" required>
+                    <option value="" disabled selected>--- Select Completed Status ---</option>
+                    <option value="true">Completed</option>
+                    <option value="false">Not Completed</option>
+                </select>
+                <button type="submit">Overwrite Task</button>
+            </form>
+            <p id="put-status" class="status"></p>
+
+            <h2>Edit Task (PATCH)</h2>
+            <p>Modifies the task that has the supplied ID</p>
+            <form id="patch-task-form">
+                <label style="display: block; text-align: left;">ID</label>
+                <input id="patch-task-title" name="patch-task-title" type="number" required>
+                <div class="button-group">
+                    <div>
+                        <label style="display: block; text-align: left;">Title</label>
+                        <input id="patch-task-title" name="patch-task-title" type="text">
+                    </div>
+                    <button type="submit" formaction="/title">Edit Title</button>
+                </div>
+                <div class="button-group">
+                    <div>
+                        <label style="display: block; text-align: left;">Course</label>
+                        <input id="patch-task-course" name="patch-task-course" type="text">
+                    </div>
+                    <button type="submit" formaction="/course">Edit Course</button>
+                </div>
+                <div class="button-group">
+                    <div>
+                        <label style="display: block; text-align: left;">Completed</label>
+                        <select id="patch-task-completed" name="patch-task-completed" required>
+                            <option value="" disabled selected>--- Select Completed Status ---</option>
+                            <option value="true">Completed</option>
+                            <option value="false">Not Completed</option>
+                        </select>
+                    </div>
+                    <button type="submit" formaction="/completed">Edit Completed</button>
+                </div>
+            </form>
+            <p id="patch-status" class="status"></p>
+
+            <h2>Delete Task</h2>
+            <p>Removes the task with the supplied ID</p>
+            <p>Returns the task associated with the supplied ID</p>
+            <form id="delete-task-form">
+                <label style="display: block; text-align: left;">Task ID</label>
+                <input id="delete-task-id" name="delete-task-id" type="number" required>
+                <button type="submit">Delete Task</button>
+            </form>
+            <p id="delete-status" class="status"></p>
+        </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
