@@ -54,7 +54,7 @@
             <p>Overwrites an existing task with the supplied ID</p>
             <form id="put-task-form">
                 <label style="display: block; text-align: left;">ID</label>
-                <input id="put-task-title" name="put-task-title" type="number" required>
+                <input id="put-task-id" name="put-task-id" type="number" required>
                 <label style="display: block; text-align: left;">Title</label>
                 <input id="put-task-title" name="put-task-title" type="text" required>
                 <label style="display: block; text-align: left;">Course</label>
@@ -73,20 +73,20 @@
             <p>Modifies the task that has the supplied ID</p>
             <form id="patch-task-form">
                 <label style="display: block; text-align: left;">ID</label>
-                <input id="patch-task-title" name="patch-task-title" type="number" required>
+                <input id="patch-task-id" name="patch-task-id" type="number" required>
                 <div class="button-group">
                     <div>
                         <label style="display: block; text-align: left;">Title</label>
                         <input id="patch-task-title" name="patch-task-title" type="text">
                     </div>
-                    <button type="submit" formaction="/title">Edit Title</button>
+                    <button type="submit" name="action" value="title">Edit Title</button>
                 </div>
                 <div class="button-group">
                     <div>
                         <label style="display: block; text-align: left;">Course</label>
                         <input id="patch-task-course" name="patch-task-course" type="text">
                     </div>
-                    <button type="submit" formaction="/course">Edit Course</button>
+                    <button type="submit" name="action" value="course">Edit Course</button>
                 </div>
                 <div class="button-group">
                     <div>
@@ -97,14 +97,13 @@
                             <option value="false">Not Completed</option>
                         </select>
                     </div>
-                    <button type="submit" formaction="/completed">Edit Completed</button>
+                    <button type="submit" name="action" value="completed">Edit Completed</button>
                 </div>
             </form>
             <p id="patch-status" class="status"></p>
 
             <h2>Delete Task</h2>
             <p>Removes the task with the supplied ID</p>
-            <p>Returns the task associated with the supplied ID</p>
             <form id="delete-task-form">
                 <label style="display: block; text-align: left;">Task ID</label>
                 <input id="delete-task-id" name="delete-task-id" type="number" required>
