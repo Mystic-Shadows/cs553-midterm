@@ -64,23 +64,23 @@ such method.
 |Method|URI/Route|Summary
 |---|---|---|
 |GET|`/health`| Returns API/server status
-|GET|`/tasks`| Returns all tasks
-|GET|`/tasks/:id`| Returns the task that matches the id
-|POST|`/tasks`| Makes a new task
-|PUT|`/tasks/:id`| Replaces the task that matches the id
-|PATCH|`/tasks/:id`| Updates the task that matches the id
-|DELETE|`/tasks/:id`| Removes the task that matches the id
+|GET|`/api/tasks`| Returns all tasks
+|GET|`/api/tasks/:id`| Returns the task that matches the id
+|POST|`/api/tasks`| Makes a new task
+|PUT|`/api/tasks/:id`| Replaces the task that matches the id
+|PATCH|`/api/tasks/:id`| Updates the task that matches the id
+|DELETE|`/api/tasks/:id`| Removes the task that matches the id
 
 ### 2.2 Method Semantics
 |Method|URI/Route|Attribute|Justification
 |---|---|---|---|
 |GET|`/health`| Safe | No modification is carried out.
-|GET|`/tasks`| Safe | No modification is carried out.
-|GET|`/tasks/:id`| Safe | No modification is carried out.
-|POST|`/tasks`| Neither | A new task is created for each POST.
-|PUT|`/tasks/:id`| Idempotent | A second PUT with the same data would replicate the first, thus changing no data.
-|PATCH|`/tasks/:id`| Idempotent | A second PATCH with the same data would replicate the first, thus changing no data.
-|DELETE|`/tasks/:id`| Idempotent | A deleted object cannot be re-deleted. 
+|GET|`/api/tasks`| Safe | No modification is carried out.
+|GET|`/api/tasks/:id`| Safe | No modification is carried out.
+|POST|`/api/tasks`| Neither | A new task is created for each POST.
+|PUT|`/api/tasks/:id`| Idempotent | A second PUT with the same data would replicate the first, thus changing no data.
+|PATCH|`/api/tasks/:id`| Idempotent | A second PATCH with the same data would replicate the first, thus changing no data.
+|DELETE|`/api/tasks/:id`| Idempotent | A deleted object cannot be re-deleted. 
 
 As a sidenote, if the POST had a client generated 'request' number that stayed the same when sending a retry, then the server could identify a duplicate command and disregard it. 
 This would make POST idempotent. This was NOT implemented in this submission.
@@ -88,7 +88,7 @@ This would make POST idempotent. This was NOT implemented in this submission.
 ### 2.3 JSON Representation
 Example curl command that has the JSON embedded. See the README.md for more.
 
-`$ curl -X POST http://localhost:3000/api/tasks -H "Content-Type: application/json" -d '{"title": "midterm", "course": "cs-553", "completed": "true"}'`
+`curl -X POST http://localhost:3000/api/tasks -H "Content-Type: application/json" -d '{"title": "lab 6", "course": "cs-553", "completed": "false"}'`
 
 ## Part 7
 
