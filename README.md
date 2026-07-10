@@ -1,5 +1,26 @@
-# Midterm Task Manager
-## 1 How to run
+﻿# Midterm Task Manager
+## 1 Structure
+```text
+.
+├── client/
+│   ├── app.js
+│   ├── index.html
+│   └── styles.css
+├── src/
+│   ├── middleware
+│   │   ├── errorHandler.js
+│   │   └── logger.js
+│   ├── routes
+│   │   ├── health.js
+│   │   └── tasks.js
+│   └── server.js
+├── answers.md
+├── opernapi.yaml
+├── package.json
+└── README.md
+```
+
+## 2 How to run
 1. Open 2 terminals at the top of the repo
 1. Execute `npm install`
 1. Execute `npm run server`
@@ -10,7 +31,7 @@ localhost:5173
 
 NOTE: server comes pre-loaded with 2 tasks.
 
-## 2 Routes
+## 3 Routes
 |Method|URI/Route|Summary
 |---|---|---|
 |GET|`/health`| Returns API/server status
@@ -21,7 +42,7 @@ NOTE: server comes pre-loaded with 2 tasks.
 |PATCH|`/api/tasks/:id`| Updates the task that matches the id
 |DELETE|`/api/tasks/:id`| Removes the task that matches the id
 
-## 3 Sample Curl Commands
+## 4 Sample Curl Commands
 
 ### Get Health
 `curl http://localhost:3000/health`
