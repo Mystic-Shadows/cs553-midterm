@@ -272,7 +272,19 @@ async function patchTask(event) {
         }
         const data = await response.json();
         const task = data.task;
-        patchTaskText.textContent = `Edited task ${task.id} to the following => ${task.id}: ${task.title} (${task.course}) ${Boolean(task.completed) ? completedString : notCompletedString}`;
+
+        if (response.status === 400) {
+            patchTaskText.textContent = `Server Rejected Data: Bad Request`;
+        } else if (response.status === 404) {
+            patchTaskText.textContent = `Server Rejected Data: Original Item not Found`;
+        } else if (!response.ok) {
+            throw new Error(`PUT /api/tasks failed with status ${response.status}`);
+        } else {
+            const data = await response.json();
+            const task = data.task;
+            patchTaskText.textContent = `Edited task ${task.id} to the following => ${task.id}: ${task.title} (${task.course}) ${Boolean(task.completed) ? completedString : notCompletedString}`;
+        }
+
     } catch (error) {
         patchTaskText.textContent = `Error Editing Task ${id}: ${error.message}`;
     }

@@ -34,18 +34,11 @@ export function postTask(req, res) {
     const completedValidity = completedText === "true" || completedText === "false";
     const completed = (completedText === "true") ? true : false;
 
-    if (title && course && completedValidity) { // passes validity
-        const id = nextId;
-        nextId++;
-        const task = { id: id, title: title, course: course, completed: completed }
-        tasks.push(task);
-        res.status(201).json({ task: task });
-    } else { // fails validity
-        res.status(400).json({
-            error: "Bad Request",
-            message: "A title, course, and completed status is required."
-        });
-    }
+    const id = nextId;
+    nextId++;
+    const task = { id: id, title: title, course: course, completed: completed }
+    tasks.push(task);
+    res.status(201).json({ task: task });
 }
 
 export function putTask(req, res) {
@@ -53,26 +46,17 @@ export function putTask(req, res) {
     const title = req.body?.title?.trim();
     const course = req.body?.course?.trim();
     const completedText = req.body?.completed?.trim().toLowerCase();
-    const completedValidity = completedText === "true" || completedText === "false";
     const completed = (completedText === "true") ? true : false;
 
-    if (title && course && completedValidity) { // passes validity
+    const task = findTask(id);
 
-        const task = findTask(id);
-
-        if (task) {
-            task.title = title;
-            task.course = course;
-            task.completed = completed;
-            res.status(200).json({ task: task });
-        } else {
-            res.status(404).json({ error: "Not found" });
-        }
-    } else { // fails validity
-        res.status(400).json({
-            error: "Bad Request",
-            message: "A title, course, and completed status is required."
-        });
+    if (task) {
+        task.title = title;
+        task.course = course;
+        task.completed = completed;
+        res.status(200).json({ task: task });
+    } else {
+        res.status(404).json({ error: "Not found" });
     }
 }
 
@@ -86,29 +70,21 @@ export function patchTask(req, res) {
 
     const task = findTask(id);
 
-    var changeMade = false;
-
     if (task) {
         if (title) {
             task.title = title;
-            changeMade = true;
         }
 
         if (course) {
             task.course = course;
-            changeMade = true;
         }
 
         if (completedValidity) {
             task.completed = completed;
-            changeMade = true;
         }
 
-        if (changeMade) {
-            res.status(200).json({ task: task });
-        } else {
-            res.status(400).json({ error: "No valid changes found in the request" });
-        }
+        res.status(200).json({ task: task });
+
     } else {
         res.status(404).json({ error: "Not found" });
     }
